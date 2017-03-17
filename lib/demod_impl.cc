@@ -1,17 +1,17 @@
 /* -*- c++ -*- */
-/* 
+/*
  * Copyright 2016 Bastille Networks.
- * 
+ *
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3, or (at your option)
  * any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this software; see the file COPYING.  If not, write to
  * the Free Software Foundation, Inc., 51 Franklin Street,
@@ -112,7 +112,7 @@ namespace gr {
     }
 
     unsigned short
-    demod_impl::argmax(gr_complex *fft_result, 
+    demod_impl::argmax(gr_complex *fft_result,
                        bool update_squelch)
     {
       float magsq   = pow(real(fft_result[0]), 2) + pow(imag(fft_result[0]), 2);
@@ -319,7 +319,7 @@ namespace gr {
           d_fft->execute();
 
           // Take argmax of downchirp FFT
-          max_index = argmax(d_fft->get_outbuf(), false); 
+          max_index = argmax(d_fft->get_outbuf(), false);
           d_sfd_history.insert(d_sfd_history.begin(), max_index);
 
           if (d_sfd_history.size() > REQUIRED_SFD_CHIRPS*OVERLAP_FACTOR)
@@ -407,7 +407,7 @@ namespace gr {
         }
         else
         {
-          d_symbols.push_back( ( d_num_symbols + (d_argmax_history[0]/d_fft_size_factor) - (d_preamble_idx/d_fft_size_factor)) % d_num_symbols);  
+          d_symbols.push_back( ( d_num_symbols + (d_argmax_history[0]/d_fft_size_factor) - (d_preamble_idx/d_fft_size_factor)) % d_num_symbols);
         }
 
         break;
@@ -451,4 +451,3 @@ namespace gr {
 
   } /* namespace lora */
 } /* namespace gr */
-
